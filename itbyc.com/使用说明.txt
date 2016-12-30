@@ -1,0 +1,16 @@
+本站在线表白页面代码520.itbyc.com，有需要的同学可以联系我，我给你发源码！
+帮助、反馈文档：
+http://itbyc.com/travel/2480.html
+
+帮助、建议、反馈QQ群：192609018 QQ号：809079280
+加群请填写验证信息
+
+说明：
+
+####本模板不包含播放器，需要的同学自行下载CKplayer
+
+首页-----------index.html
+音乐列表页-----article_list.html
+文章内容页-----article.html
+最新更新页-----new.html
+播放页---------pay.html

@@ -107,6 +107,6 @@
   
   
   <build>
-    <finalName>ssm-template</finalName>
+    <finalName>cloudmusic</finalName>
   </build>
 </project>

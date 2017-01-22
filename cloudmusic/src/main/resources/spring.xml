@@ -22,7 +22,7 @@
     <!-- bean就由spring容器创建好的对象 -->
     <!-- 指定可以做为spring容器管理的对象的包 -->
    
-    
+     <context:component-scan base-package="com.yc.music"/>
      
     <!-- 引入外部属性文件 -->
     <context:property-placeholder location="classpath:db.properties"/>
@@ -38,8 +38,16 @@
     	<property name="validationQuery" value="${jdbc.validationQuery}"/>
     </bean>
     
-    <bean id="sqlSessionFactory"  class="org.mybatis.spring.SqlSessionFactoryBean">
-    	<property name="dataSource" ref="dataSource"/>
-    </bean>
    
+   <!-- 配制mybatis与spring整合的SqlSessionFactory的对象 -->
+	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+	    <property name="dataSource" ref="dataSource"/>
+	    <property name="typeAliasesPackage" value="com.yc.music.entity"/>
+	    <property name="mapperLocations" value="classpath:mapper/*Mapper.xml"/>
+	</bean>
+	
+	<bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+	    <property name="basePackage" value="com.yc.music.mapper"/>
+	    <property name="sqlSessionFactoryBeanName" value="sqlSessionFactory"/>
+	</bean>
 </beans>

@@ -1,9 +1,8 @@
 package com.yc.music.service;
 
-import com.yc.ccs.entity.User;
+import com.yc.music.entity.User;
 
 public interface UserService {
-	 void resetPassword(String username,String randPassword);
+	boolean register(User user);
 
-	User login(User user);
 }

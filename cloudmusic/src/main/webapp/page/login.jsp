@@ -30,7 +30,7 @@
 
 		<div class="login form">
 			<div class="group">
-				<form id="loginForm" method="post">
+				<form id="loginForm" action="user/login">
 					<div class="group-ipt email">
 						<input type="text" name="email" id="email" class="ipt" placeholder="邮箱地址" required>
 					</div>
@@ -40,7 +40,7 @@
 				</form>
 				<div class="group-ipt verify">
 					<input type="text" name="verify" id="verify" class="ipt" placeholder="输入验证码" required>
-					<img src="http://zrong.me/home/index/imgcode?id=" class="imgcode">
+					<img src="vcode.jpg" title="看不清，换一张" class="imgcode"/>
 				</div>
 			</div>
 		</div>

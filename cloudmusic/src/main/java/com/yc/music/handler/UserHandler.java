@@ -17,8 +17,9 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
-import com.yc.ccs.entity.User;
-import com.yc.ccs.service.UserService;
+import com.yc.music.entity.User;
+import com.yc.music.service.UserService;
+
 
 @Controller
 @RequestMapping("/user")
@@ -26,58 +27,19 @@ import com.yc.ccs.service.UserService;
 public class UserHandler {
 	
 	@Autowired
-	private JavaMailSender mailSender;
-	@Autowired
 	private UserService userService;
 	
-	@RequestMapping("/forget")
-	public String forget(String username,String email,HttpServletRequest request){
-		LogManager.getLogger().debug("请求UserHandler进行forget的操作。。。");
-		LogManager.getLogger().debug("请求数据username:"+username+",email:"+email);
-		
-		
-		try {
-			MimeMessage message = mailSender.createMimeMessage();
-			MimeMessageHelper helper = new MimeMessageHelper(message,true,"utf-8");
-			helper.setFrom("y2840369162@163.com");
-			helper.setTo(email);
-			helper.setSubject("找回密码");
-			//String hrefStr = session.getServletContext().getContext("/user/getpassword")+"?username="+username;
-			String hrefStr = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort() + request.getServletContext().getContextPath() + "/user/getpassword?username=" + username;
-			System.out.println(hrefStr);
-			helper.setText("<a href='" + hrefStr + "'>找回密码</a>"+"<br>如果连接不可用拷贝" + hrefStr , true);
-			mailSender.send(message);
-		} catch (MessagingException e) {
-			// TODO Auto-generated catch block
-			return "redirect:/page/forgetPassword.jsp";
-		}
-		return "redirect:/page/forgetSuccess.jsp";
-		
-	}
-	
-	@RequestMapping("/getpassword")
-	public String getpassword(String username, HttpSession session) {
-		Random rand = new Random();
-		String randPassword = rand.nextInt(900000) + 100000 + "";
-		System.out.println("新密码是："+randPassword);
-		userService.resetPassword(username, randPassword);
-		//业务处理重置密码
-		session.setAttribute("newPassword", randPassword);
-		return "redirect:/page/getpasswordSuccess.jsp";
-	}
-	
-	@RequestMapping("/login")
-	public String login(User user,ModelMap map){
-		user = userService.login(user);
-		System.out.println("user====="+user);
-		if(user !=null){
-			map.put("loginUser", user);
+	@RequestMapping("/register")
+	public String register(User user,ModelMap map){
+		boolean rw = userService.register(user);
+		//System.out.println("user====="+user);
+		if((rw+"").trim()=="true"){
 			System.out.println("通过！！！");
-			return "redirect:/page/manage.jsp";
+			return "redirect:/page/login.jsp";
 		}
 		
-		map.put("errorMsg","用户名或密码错误");
-		return "forward:/login.jsp";
+		map.put("errorMsg","两次密码不一致");
+		return "forward:/page/register.jsp";
 		
 		
 	}

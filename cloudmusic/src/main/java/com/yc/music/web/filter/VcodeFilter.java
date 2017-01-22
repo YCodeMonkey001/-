@@ -18,7 +18,7 @@ import org.apache.logging.log4j.LogManager;
 /**
  *  过滤验证码
  */
-@WebFilter("/admin/login")
+@WebFilter("/user/register")
 public class VcodeFilter extends AbstractFilter{
    
 	@Override
@@ -29,7 +29,7 @@ public class VcodeFilter extends AbstractFilter{
 		HttpSession session = ((HttpServletRequest)request).getSession();
 		String srcCode = (String)session.getAttribute("rand"); //取到原始验证码
 		System.out.println("图片验证码"+srcCode);
-		String inputCode = request.getParameter("vcode");
+		String inputCode = request.getParameter("verify");
 		System.out.println("输入验证码"+srcCode);
 		if(srcCode.intern() == inputCode.intern()){
 			LogManager.getLogger().debug("过滤器VcodeFilter验证验证码通过.....");
@@ -37,7 +37,7 @@ public class VcodeFilter extends AbstractFilter{
 		}else{
 			LogManager.getLogger().debug("过滤器VcodeFilter验证验证码失败.....");
 			session.setAttribute("errorMsg", "验证码错误！！！");
-			((HttpServletResponse) response).sendRedirect("/ccs/login.jsp");
+			((HttpServletResponse) response).sendRedirect("/page/register.jsp");
 		}
 		
 		

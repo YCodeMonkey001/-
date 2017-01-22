@@ -30,15 +30,15 @@
 
 		<div class="login form">
 			<div class="group">
-				<form id="registerForm" method="post">
+				<form id="registerForm" action="user/register">
 					<div class="group-ipt email">
-						<input type="email" name="email" id="email" class="ipt" placeholder="邮箱地址" required>
+						<input type="email" name="User_email" id="email" class="ipt" placeholder="邮箱地址" required>
 					</div>
 					<div class="group-ipt user">
-						<input type="text" name="user" id="user" class="ipt" placeholder="选择一个用户名" required>
+						<input type="text" name="User_name" id="user" class="ipt" placeholder="选择一个用户名" required>
 					</div>
 					<div class="group-ipt password">
-						<input type="password" name="password" id="password" class="ipt" placeholder="设置登录密码" required>
+						<input type="password" name="User_pwd" id="password" class="ipt" placeholder="设置登录密码" required>
 					</div>
 					<div class="group-ipt password1">
 						<input type="password" name="password1" id="password1" class="ipt" placeholder="重复密码" required>
@@ -46,7 +46,7 @@
 					</form>
 				<div class="group-ipt verify">
 					<input type="text" name="verify" id="verify" class="ipt" placeholder="输入验证码" required>
-					<img src="http://zrong.me/home/index/imgcode?id=" class="imgcode">
+					<img src="vcode.jpg" title="看不清，换一张" class="imgcode">
 				</div>
 			</div>
 		</div>

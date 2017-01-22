@@ -26,9 +26,12 @@ drop table enshrine;
 drop table gedanlist;
 drop table comment_f
 
+
+
+
 --1.用户表
 create table user_f(
-	User_id number primary key,--用户编号
+	User_id int primary key,--用户编号
 	User_name varchar2(40) not null,--用户昵称,
 	User_pwd varchar2(40) not null,--用户密码
 	User_sign varchar2(12),--用户签名
@@ -36,7 +39,7 @@ create table user_f(
 	User_sex varchar2(2) check (User_sex in('男','女')),
 	User_birth date,--用户生日
 	User_constell varchar2(20),--用户星座
-	User_mobile varchar2(20) not null,--用户手机号
+	User_mobile varchar2(20),--用户手机号
 	User_email varchar2(20),--用户邮箱
 	User_address varchar2(20),--用户地址
 	User_another1 varchar2(40),--预留字段1
@@ -44,6 +47,9 @@ create table user_f(
 	User_another3 varchar2(40) --预留字段3
 )
 
+create sequence seq_user_f start with 1
+
+select *from USER_F;
 --2.管理员表
 create table manager(
 	Manager_id int primary key,--管理员编号
